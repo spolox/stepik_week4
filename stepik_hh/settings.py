@@ -129,6 +129,8 @@ MEDIA_COMPANY_IMAGE_DIR = 'company_images'
 
 MEDIA_SPECIALITY_IMAGE_DIR = 'speciality_images'
 
+STATIC_ROOT = 'static_deploy'
+
 STATICFILES_DIRS = ['static']
 
 STATIC_URL = '/static/'
