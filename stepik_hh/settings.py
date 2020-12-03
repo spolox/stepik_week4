@@ -148,4 +148,3 @@ MESSAGE_TAGS = {
 SEARCH_EXAMPLES = ['Python', 'Django', 'Angular', 'C++']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
