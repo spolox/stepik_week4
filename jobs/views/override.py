@@ -7,7 +7,7 @@ from jobs.models import Company
 
 
 class LoginRequiredMixinOverride(LoginRequiredMixin):
-    login_url = 'login'
+    login_url = reverse_lazy('login')
     redirect_field_name = 'next'
 
     def dispatch(self, request, *args, **kwargs):
