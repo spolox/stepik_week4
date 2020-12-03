@@ -134,7 +134,7 @@ USE_TZ = True
 
 MEDIA_ROOT = 'media'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/'
 
 MEDIA_COMPANY_IMAGE_DIR = 'company_images'
 
