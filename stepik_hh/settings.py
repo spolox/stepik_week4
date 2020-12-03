@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,9 +147,9 @@ STATICFILES_DIRS = ['static']
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = reverse_lazy('main')
 
-LOGOUT_REDIRECT_URL = '/login'
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-secondary',

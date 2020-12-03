@@ -6,6 +6,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, reverse, render
 from django.views.generic import CreateView, View
+from django.urls import reverse_lazy
 
 from jobs.forms.account import UserLoginForm, UserRegisterForm, ProfileForm, CustomPasswordChangeForm
 from jobs.views.override import LoginRequiredMixinOverride
@@ -14,7 +15,7 @@ from jobs.views.override import LoginRequiredMixinOverride
 class MyRegisterView(SuccessMessageMixin, CreateView):
     form_class = UserRegisterForm
     template_name = os.path.join('jobs', 'account', 'register.html')
-    success_url = 'login'
+    success_url = reverse_lazy('login')
     success_message = 'Вы успешно зарегистировались!'
 
 
