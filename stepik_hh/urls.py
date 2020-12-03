@@ -31,8 +31,8 @@ from jobs.views.public import SendResumeView
 from jobs.views.public import SearchVacancyView
 from jobs.views.public import custom_handler404, custom_handler500
 
-handler404 = custom_handler404
-handler500 = custom_handler500
+#handler404 = custom_handler404
+#handler500 = custom_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
