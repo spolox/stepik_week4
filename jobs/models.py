@@ -60,7 +60,7 @@ class Application(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applications')
 
     def __str__(self):
-        return self.written_username + ' ' + self.written_phone
+        return self.written_username + ' ' + str(self.written_phone)
 
 
 class Resume(models.Model):
