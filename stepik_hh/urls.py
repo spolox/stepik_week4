@@ -73,4 +73,5 @@ urlpatterns = [
     re_path(r'^search(?:(?P<query>\w+))?', SearchVacancyView.as_view(), name='search-vacancy'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
