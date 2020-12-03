@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <div class="pl-3 mb-5">
+        <p><a href={{ request.META.HTTP_REFERER }}>Назад</a></p>
+      </div>
+    </div>
+    <div class="col-12 col-lg-8">
+      <section class="pl-3">
+        <a href={% url 'company-detail' vacancy.company.id %}>
+          <img src="{{ vacancy.company.logo.url }}" width="130" height="80"
+               alt="{{ vacancy.company.title.url }}">
+        </a>
+        <div class="d-flex align-items-baseline align-content-baseline">
+          <h1 class="h2 mt-4 font-weight-bold">{{ vacancy.title }}</h1>
+          <p class="m-0 pl-3">{{ vacancy.salary_min }} – {{ vacancy.salary_max }} Р</p>
+        </div>
+        <p class="mt-2">{{ vacancy.skills }}</p>
+        <p class="text-muted mb-4">{{ vacancy.company.name }}
+          ({{ vacancy.company.employee_count }} человек), {{ vacancy.company.location }} или удаленно</p>
+        <div style="line-height: 1.8;">
+          <p>{{ vacancy.company.description }}</p>
+          {{ vacancy.description|safe }}
+        </div>
+        <a name="application"></a>
+        {% if request.user.is_authenticated %}
+          {% crispy form 'bootstrap4' %}
+        {% else %}
+          <a href="{% url 'login' %}?next={{ request.path }}#application" class="btn btn-primary btn-lg my-2">
+            Авторизируйтесь для отправки отклика</a>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+{% endblock %}

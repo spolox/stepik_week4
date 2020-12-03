@@ -1,0 +1,11 @@
+{% extends 'jobs/account/base_account.html' %}
+{% load crispy_forms_tags %}
+
+{% block account_info %}
+  <p class="h5 font-weight-light">Создайте аккаунт</p>
+{% endblock %}
+
+{% block account_form %}
+  {% crispy form 'bootstrap4' %}
+  <div class="mt-4 text-center"><p>Есть аккаунт? <a href="/login">Войдите!</a></p></div>
+{% endblock %}

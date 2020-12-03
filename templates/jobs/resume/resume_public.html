@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Резюме {{ resume.name }} {{ resume.surname }} |
+{% endblock %}
+
+{% block main %}
+  <div class="row mt-5">
+    <div class="col-12 col-lg-2">
+      <div class="pl-3 mb-5">
+        <p><a href={{ request.META.HTTP_REFERER }}>Назад</a></p>
+      </div>
+    </div>
+    <div class="col-12 col-lg-8">
+      <section class="pl-3">
+        <h1 class="h1 text-center mx-auto pt-5" style="font-size: 70px;"><strong>Резюме</strong></h1>
+        <div class="card mt-4 mb-3">
+          <div class="card-body">
+            <h1 class="h2 mt-4 card-title">{{ resume.name }} {{ resume.surname }}</h1>
+            <p class="h4 card-text">{{ resume.get_specialty_display }}, {{ resume.get_grade_display }}</p>
+            <p class="card-text">Статус: {{ resume.get_status_display }}</p>
+            <p class="card-text">Желаемая зарплата: {{ resume.salary }} руб</p>
+
+            <p class="h6 card-text">Образование: {{ resume.get_education_display }}</p>
+            <p class="card-text">Опыт работы:</p>
+            <div class="card card-body mx-2 py-1">
+              <p class="card-text">
+                {{ resume.experience|linebreaks }}
+              </p>
+            </div>
+            {% if resume.portfolio|length == 0 %}
+              <p class="card-text">Пользователь предпочел не указывать своё портфолио</p>
+            {% else %}
+              <p class="card-text">Портфолио: <a href="{{ resume.portfolio }}">{{ resume.portfolio }}</a></p>
+            {% endif %}
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+{% endblock %}

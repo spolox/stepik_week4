@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Мой профиль |
+{% endblock %}
+
+{% block style %}
+  <style>
+      body {
+          background-color: #F6F2E6;
+      }
+  </style>
+{% endblock %}
+
+{% block main %}
+    <section class="col-12 col-lg-6 offset-lg-3 mt-5 card">
+      <div class="card-body px-3 pb-4">
+        <h2 class="h2 pb-2">Мой профиль</h2>
+        {% include 'messages.html' %}
+        {% crispy form 'bootstrap4' %}
+        <p>Для изменения пароля, воспользуйтесь <a href={% url 'change-password' %}>данной формой</a></p>
+      </div>
+    </section>
+{% endblock %}

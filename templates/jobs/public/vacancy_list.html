@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <section>
+    <div class="row">
+      <div class="col-12 col-md-8 col-lg-6 offset-lg-3 offset-md-2">
+        <p class="text-center mx-auto mt-4 pt-5" style="font-size: 50px;">
+          <strong>Поиск вакансий</strong>
+        </p>
+        {% include 'search_form.html' %}
+        <p class="text-center pt-1">
+          {% if vacancy_list|length == 0 %}
+            Ничего не найдено
+          {% else %}
+            Найдено {{ vacancy_list|length }} вакансий
+          {% endif %}
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 col-lg-8 offset-lg-2 m-auto">
+        {% for vacancy in vacancy_list %}
+          <div class="card mb-4">
+            <div class="card-body px-4">
+              <div class="row">
+                <div class="col-12 col-md-8 col-lg-9">
+                  <a href={% url 'vacancy-detail' vacancy.id %}>
+                    <h2 class="h2 pb-2">{{ vacancy.title }}</h2>
+                    <p class="mb-2">{{ vacancy.skills }}</p>
+                    <p>От {{ vacancy.salary_min }} до {{ vacancy.salary_max }} руб.</p>
+                    <p class="text-muted pt-1">{{ vacancy.published_at|date:"d E" }}</p>
+                  </a>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 d-flex align-items-end">
+                  <a href={% url 'company-detail' vacancy.company.id %}>
+                    <img src="{{ vacancy.company.logo.url }}"
+                         width="130" height="80" alt="{{ vacancy.company.name }}">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

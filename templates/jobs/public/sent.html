@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%  load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Отклик отправлен |
+{% endblock %}
+
+{% block main %}
+  <div class="row mt-5">
+    <div class="col-10 col-md-6 offset-1 offset-md-3 mt-5">
+      <div class="card mb-3">
+        <div class="card-body text-center pt-5">
+          {% if send_success %}
+            <img src={% static 'images/check.png' %} width="65" alt="success">
+            <h2 class="h5 card-title mt-4 mb-2">Отклик отправлен</h2>
+          {% else %}
+            <h2 class="h5 card-title mt-4 mb-2">Нечего отправлять</h2>
+          {% endif %}
+          <p><a href={% url 'vacancy-detail' pk %}>Вернуться к вакансии</a></p>
+        </div>
+      </div>
+    </div>
+{% endblock %}

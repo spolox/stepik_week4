@@ -1,0 +1,16 @@
+<div class="col-12 col-lg-4">
+  <aside class="pt-3 pb-4 px-4 mb-5 card">
+    <h1 class="h4 pt-2 pb-2">Моя компания</h1>
+    <div class="nav flex-column nav-pills">
+      {% url 'mycompany-vacancy-list' as url_mycompany_vacancy_list %}
+      {% url 'mycompany' as url_mycompany %}
+      <a class="nav-link {% if request.path == url_mycompany %}active{% endif %}" href="{{ url_mycompany }}">
+          1. Информация о&nbsp;компании
+      </a>
+      <a class="nav-link {% if request.path == url_mycompany_vacancy_list %}active{% endif %}
+        {% if is_new_company %}disabled{% endif %}" href="{{ url_mycompany_vacancy_list }}">
+          2. Вакансии
+      </a>
+    </div>
+  </aside>
+</div>

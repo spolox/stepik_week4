@@ -1,0 +1,12 @@
+{% extends 'jobs/account/base_account.html' %}
+{% load crispy_forms_tags %}
+
+{% block account_info %}
+  <p class="h5 font-weight-light">Войдите, чтобы управлять</p>
+{% endblock %}
+
+{% block account_form %}
+  {% include 'messages.html' %}
+  {% crispy form 'bootstrap4' %}
+  <div class="mt-4 text-center"><p>Нет аккаунта? <a href="/register">Зарегистрируйтесь!</a></p></div>
+{% endblock %}

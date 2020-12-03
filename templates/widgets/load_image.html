@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-6">
+    <div class="justify-content-start">
+      {% if widget.is_initial %}
+        <img src="{{ widget.value.url }}" alt="{{ widget.value }}" id="id_image_{{ widget.name }}"
+             style="height: 40px;width: 100%;object-fit: cover;">
+      {% else %}
+        <img src="https://place-hold.it/120x40" alt="" id="id_image_{{ widget.name }}"
+             style="height: 40px;width: 100%;object-fit: cover;">
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="input-group mb-3">
+      <div class="custom-file">
+        <input type=file class="custom-file-input" name="{{ widget.name }}"
+               onchange=file_changed() id="id_{{ widget.name }}">
+        <span class="btn btn-info px-4" for="id_{{ widget.name }}">Загрузить</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function file_changed() {
+        let selectedFile = document.getElementById('id_{{ widget.name }}').files[0];
+        if (!selectedFile) {
+            return
+        }
+        let img = document.getElementById('id_image_{{ widget.name }}')
+        let reader = new FileReader();
+        reader.onload = function () {
+            img.src = this.result
+            img.alt = selectedFile.name
+        }
+        reader.readAsDataURL(selectedFile);
+    }
+</script>
