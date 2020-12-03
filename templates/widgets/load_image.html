@@ -1,22 +1,25 @@
-<div class="row">
-  <div class="col-6">
-    <div class="justify-content-start">
-      {% if widget.is_initial %}
-        <img src="{{ widget.value.url }}" alt="{{ widget.value }}" id="id_image_{{ widget.name }}"
-             style="height: 40px;width: 100%;object-fit: cover;">
-      {% else %}
-        <img src="https://place-hold.it/120x40" alt="" id="id_image_{{ widget.name }}"
-             style="height: 40px;width: 100%;object-fit: cover;">
-      {% endif %}
-    </div>
-  </div>
-  <div class="col-6">
-    <div class="input-group mb-3">
-      <div class="custom-file">
-        <input type=file class="custom-file-input" name="{{ widget.name }}"
-               onchange=file_changed() id="id_{{ widget.name }}">
-        <label class="btn btn-info px-4" for="id_{{ widget.name }}">Загрузить</label>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="justify-content-center">
+        {% if widget.is_initial %}
+          <img src="{{ widget.value.url }}" alt="{{ widget.value }}" id="id_image_{{ widget.name }}"
+               style="height: 40px;width: 100%;object-fit: cover;">
+        {% else %}
+          <img src="https://place-hold.it/120x40" alt="" id="id_image_{{ widget.name }}"
+               style="height: 40px;width: 100%;object-fit: cover;">
+        {% endif %}
       </div>
+    </div>
+    <div class="col-12">
+      <form class="md-form">
+        <div class="input-group mb-3 mt-3">
+          <div class="file-path-wrapper">
+            <input type=file class="file-path validate" name="{{ widget.name }}"
+                   onchange=file_changed() id="id_{{ widget.name }}">
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
