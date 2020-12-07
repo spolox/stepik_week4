@@ -76,8 +76,9 @@ class MyCompanyVacancyListView(LoginRequiredMixinOverride, HasCompanyRequiredMix
 
 class MyCompanyVacancyView(LoginRequiredMixinOverride, HasCompanyRequiredMixin, View):
     def get(self, request, pk):
-        vacancy_choice = Vacancy.objects.filter(id=pk).select_related('company__owner').\
-            prefetch_related('applications__user').first()
+        query_vacancy_choice = Vacancy.objects.filter(id=pk).select_related('company__owner').\
+            prefetch_related('applications__user')
+        vacancy_choice = query_vacancy_choice.first()
         context = {
             'pk': pk,
             'vacancy': vacancy_choice,
