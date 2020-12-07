@@ -68,7 +68,7 @@ class MyCompanyDeleteView(LoginRequiredMixinOverride, View):
 class MyCompanyVacancyListView(LoginRequiredMixinOverride, HasCompanyRequiredMixin, View):
     def get(self, request):
         vacancy_list = Vacancy.objects.filter(company__owner=self.request.user).all().prefetch_related('applications')
-        if vacancy_list.count() == 0:
+        if len(vacancy_list) == 0:
             messages.info(self.request, 'У вас пока нет вакансий, но вы можете создать первую!')
         return render(request, os.path.join('jobs', 'my_company', 'company_vacancy_list.html'),
                       {'vacancy_list': vacancy_list})
@@ -76,7 +76,8 @@ class MyCompanyVacancyListView(LoginRequiredMixinOverride, HasCompanyRequiredMix
 
 class MyCompanyVacancyView(LoginRequiredMixinOverride, HasCompanyRequiredMixin, View):
     def get(self, request, pk):
-        vacancy_choice = Vacancy.objects.filter(id=pk).first()
+        vacancy_choice = Vacancy.objects.filter(id=pk).select_related('company__owner').\
+            prefetch_related('applications__user').first()
         context = {
             'pk': pk,
             'vacancy': vacancy_choice,

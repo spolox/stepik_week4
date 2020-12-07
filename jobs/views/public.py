@@ -46,15 +46,24 @@ class DetailVacancyView(DetailView):
             context['form'] = ApplicationForm(self.kwargs['pk'])
         return context
 
+    def get_queryset(self):
+        return self.model.objects.filter(pk=self.kwargs['pk']).select_related('company')
+
 
 class ListSpecialtyView(DetailView):
     model = Specialty
     template_name = os.path.join('jobs', 'public', 'specialty_detail.html')
 
+    def get_queryset(self):
+        return self.model.objects.filter(pk=self.kwargs['pk']).prefetch_related('vacancies__company')
+
 
 class DetailCompanyView(DetailView):
     model = Company
     template_name = os.path.join('jobs', 'public', 'company_detail.html')
+
+    def get_queryset(self):
+        return self.model.objects.filter(pk=self.kwargs['pk']).prefetch_related('vacancies__specialty')
 
 
 class SendResumeView(LoginRequiredMixinOverride, View):
